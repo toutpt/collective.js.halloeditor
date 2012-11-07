@@ -49,7 +49,7 @@
       jQuery('#disable').button().click(function() {
         jQuery('.editable').hallo({editable: false});
       });
-      jQuery('.editable').bind('hellodeactivated', function() {
+      jQuery('.editable').bind('hallodeactivated', function() {
           alert("foobar");
         $(this).hallo({editable:false});
       });
