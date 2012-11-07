@@ -10,9 +10,50 @@
     <tal:main-macro metal:define-macro="main">
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
-        <script type="text/javascript" charset="utf-8">
-        </script>
+    <button id="enable">Enable</button>
+    <button id="disable">Disable</button>
+    <p id="modified">Editables have not been modified</p>
 
+    <h1 class="editable" tal:content="view/context/Title">Hello World</h1>
+    <div class="editable" tal:condition="view/context/getText|nothing"
+      tal:content="structure view/context/getText">
+    </div>
+
+
+    <script>
+      jQuery('#enable').button().click(function() {
+        jQuery('.editable').hallo({
+          plugins: {
+            'halloformat': {},
+            'halloblock': {},
+            'hallojustify': {},
+            'hallolists': {},
+            'hallolink': {},
+            'halloreundo': {}
+          },
+          editable: true
+        });
+        jQuery('.editable').bind('hallomodified', function(event, data) {
+            jQuery('#modified').html("Editables modified");
+        });
+        jQuery('.editable').bind('halloselected', function(event, data) {
+            jQuery('#modified').html("Selection made");
+        });
+        jQuery('.editable').bind('hallounselected', function(event, data) {
+            jQuery('#modified').html("Selection removed");
+        });
+        jQuery('.editable').bind('hallorestored', function(event, data) {
+            jQuery('#modified').html("restored");
+        });
+      });
+      jQuery('#disable').button().click(function() {
+        jQuery('.editable').hallo({editable: false});
+      });
+      jQuery('.editable').bind('hellodeactivated', function() {
+          alert("foobar");
+        $(this).hallo({editable:false});
+      });
+    </script>
 
     </tal:main-macro>
     </div>

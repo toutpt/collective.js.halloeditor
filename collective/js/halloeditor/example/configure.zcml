@@ -8,7 +8,7 @@
     name="example.collective.js.halloeditor"
     for="*"
     class=".halloeditor.Example"
-    template="*package.pt"
+    template="halloeditor.pt"
     permission="zope2.View"
     />
 
